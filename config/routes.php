@@ -16,6 +16,22 @@ $app['action.show-category'] = function() use ($app) {
     return new App\Category\Action\ShowCategoryAction($app['responder.show-category'], $app['repository.categories']);
 };
 
+$app->before(function (Symfony\Component\HttpFoundation\Request $request) {
+   if ($request->getMethod() === "OPTIONS") {
+       $response = new Response();
+       $response->headers->set("Access-Control-Allow-Origin","*");
+       $response->headers->set("Access-Control-Allow-Methods","GET,POST,PUT,DELETE,OPTIONS");
+       $response->headers->set("Access-Control-Allow-Headers","Content-Type");
+       $response->setStatusCode(200);
+       return $response->send();
+   }
+}, Silex\Application::EARLY_EVENT);
+
+$app->after(function (Symfony\Component\HttpFoundation\Request $request, Symfony\Component\HttpFoundation\Response $response) {
+   $response->headers->set("Access-Control-Allow-Origin","*");
+   $response->headers->set("Access-Control-Allow-Methods","GET,POST,PUT,DELETE,OPTIONS");
+});
+
 $app->get('/', function () {
     $msg = [];
     $msg[] = '<h1>Application API</h1>';
