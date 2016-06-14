@@ -4,8 +4,16 @@ $app['responder.list-categories'] = function() use ($app) {
     return new App\Category\Responder\ListCategoriesResponder();
 };
 
+$app['responder.show-category'] = function() use ($app) {
+    return new App\Category\Responder\ShowCategoryResponder();
+};
+
 $app['action.list-categories'] = function() use ($app) {
     return new App\Category\Action\ListCategoriesAction($app['responder.list-categories'], $app['repository.categories']);
+};
+
+$app['action.show-category'] = function() use ($app) {
+    return new App\Category\Action\ShowCategoryAction($app['responder.show-category'], $app['repository.categories']);
 };
 
 $app->get('/', function () {
@@ -14,6 +22,7 @@ $app->get('/', function () {
     $msg[] = '<p>You\'re probably looking for JSON API:</p>';
     $msg[] = '<ul>';
     $msg[] = '<li><a href="/api/v1/categories">List all categories</a></li>';
+    $msg[] = '<li><a href="/api/v1/categories/1">Show a specific category</a></li>';
     $msg[] = '</ul>';
 
     return implode('', $msg);
@@ -21,3 +30,4 @@ $app->get('/', function () {
 
 /** API */
 $app->get('/api/v1/categories', 'action.list-categories');
+$app->get('/api/v1/categories/{id}', 'action.show-category');

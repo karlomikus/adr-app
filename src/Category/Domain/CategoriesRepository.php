@@ -15,4 +15,16 @@ class CategoriesRepository extends AbstractRepository
 
         return Collection::from($q->select('*')->from($this->table)->execute()->fetchAll());
     }
+
+    public function getByID($id)
+    {
+        $q = $this->conn->createQueryBuilder();
+
+        return $q->select('*')
+            ->from($this->table)
+            ->where('id = ?')
+            ->setParameter(0, $id)
+            ->execute()
+            ->fetch();
+    }
 }
