@@ -4,7 +4,8 @@
         "symfony/var-dumper": "^3.1",
         "doctrine/dbal": "~2.2",
         "vlucas/phpdotenv": "^2.2",
-        "dusank/knapsack": "^8.3"
+        "dusank/knapsack": "^8.3",
+        "firebase/php-jwt": "^3.0"
     },
     "require-dev": {
         "robmorgan/phinx": "^0.5.3",

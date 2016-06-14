@@ -6,8 +6,8 @@ $dotenv->load();
 
 $app = new Silex\Application();
 
-require __DIR__ . '/../src/config.php';
-require __DIR__ . '/../src/app.php';
-require __DIR__ . '/../src/routes.php';
+require __DIR__ . '/../config/config.php';
+require __DIR__ . '/../config/app.php';
+require __DIR__ . '/../config/routes.php';
 
 $app->run();
