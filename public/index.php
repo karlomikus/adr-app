@@ -8,6 +8,7 @@ $app = new Silex\Application();
 
 require __DIR__ . '/../config/config.php';
 require __DIR__ . '/../config/app.php';
+require __DIR__ . '/../config/middleware.php';
 require __DIR__ . '/../config/routes.php';
 
 $app->run();
