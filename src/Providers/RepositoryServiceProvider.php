@@ -2,6 +2,7 @@
 namespace App\Providers;
 
 use App\Category\Domain\CategoriesRepository;
+use App\User\Domain\UsersRepository;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
@@ -14,6 +15,7 @@ class RepositoryServiceProvider implements ServiceProviderInterface
 {
     protected $repositories = [
         'categories' => CategoriesRepository::class,
+        'users'      => UsersRepository::class,
     ];
 
     public function register(Container $app)
