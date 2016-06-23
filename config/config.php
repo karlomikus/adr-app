@@ -9,3 +9,5 @@ $app['config.database'] = [
     'password' => getenv('DB_PASS'),
     'host'     => getenv('DB_HOST'),
 ];
+
+$app['key'] = getenv('API_KEY');
