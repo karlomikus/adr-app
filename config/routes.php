@@ -45,4 +45,4 @@ $app->get('/', function () {
 $app->get('/api/v1/categories', 'action.list-categories');
 $app->get('/api/v1/categories/{id}', 'action.show-category');
 
-$app->post('/api/v1/login', 'action.login');
+$app->post('/login', 'action.login');

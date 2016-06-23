@@ -4,6 +4,7 @@ namespace App\User\Action;
 use App\User\Domain\UsersRepository;
 use App\User\Responder\LoginResponder;
 use Symfony\Component\HttpFoundation\Request;
+use Firebase\JWT\JWT;
 
 class LoginAction
 {
@@ -23,7 +24,24 @@ class LoginAction
         $user = $this->users->getByEmail($payload['email']);
 
         if ($payload['pass'] == $user['password']) {
-            return $this->responder->handle($user);
+
+            $issuedAt   = time();
+            $notBefore  = $issuedAt + 10;
+            $expire     = $notBefore + 60;
+
+            $token = [
+                "iss" => 'adr.dev',
+                "exp" => $expire,
+                "iat" => $issuedAt,
+                "nbf" => $notBefore,
+                "data" => [
+                    'user' => $user
+                ]
+            ];
+
+            $jwt = JWT::encode($token, getenv('API_KEY'), 'HS256');
+
+            return $this->responder->handle(['token' => $jwt]);
         }
 
         return $this->responder->handle(['errors' => ['msg' => 'Login failed']]);
