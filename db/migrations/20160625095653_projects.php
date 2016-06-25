@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class Categories extends AbstractMigration
+class Projects extends AbstractMigration
 {
     /**
      * Change Method.
@@ -27,8 +27,12 @@ class Categories extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('categories');
-        $table->addColumn('name', 'string', ['limit' => 50])
+        $table = $this->table('projects');
+        $table
+            ->addColumn('name', 'string', ['limit' => 100])
+            ->addColumn('created_by', 'integer')
+            ->addColumn('description', 'text', ['null' => true])
+            ->addColumn('created_at', 'datetime', ['null' => true])
             ->create();
     }
 }

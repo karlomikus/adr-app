@@ -2,7 +2,7 @@
 
 use Phinx\Seed\AbstractSeed;
 
-class Categories extends AbstractSeed
+class Projects extends AbstractSeed
 {
     /**
      * Run Method.
@@ -19,10 +19,13 @@ class Categories extends AbstractSeed
         $data = [];
         for ($i = 0; $i < 20; $i++) {
             $data[] = [
-                'name' => ucfirst($faker->text(50))
+                'name' => ucfirst($faker->text(100)),
+                'created_by' => 1,
+                'description' => $faker->text(),
+                'created_at' => date('Y-m-d H:i:s')
             ];
         }
 
-        $this->insert('categories', $data);
+        $this->insert('projects', $data);
     }
 }

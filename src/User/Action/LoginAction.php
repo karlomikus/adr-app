@@ -35,7 +35,12 @@ class LoginAction
                 "iat" => $issuedAt,
                 "nbf" => $notBefore,
                 "data" => [
-                    'user' => $user
+                    'user' => [
+                        'id' => $user['id'],
+                        'email' => $user['email'],
+                        'name' => $user['name'],
+                        'last_name' => $user['last_name'],
+                    ]
                 ]
             ];
 
