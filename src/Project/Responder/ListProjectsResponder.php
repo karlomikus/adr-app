@@ -1,13 +1,13 @@
 <?php
-namespace App\Category\Responder;
+namespace App\Project\Responder;
 
 use App\Common\BaseResponder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class ShowCategoryResponder extends BaseResponder
+class ListProjectsResponder extends BaseResponder
 {
     public function handle($payload)
     {
-        return new JsonResponse($payload);
+        return new JsonResponse($payload->toArray());
     }
 }

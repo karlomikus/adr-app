@@ -1,13 +1,13 @@
 <?php
-namespace App\Category\Domain;
+namespace App\Project\Domain;
 
 use App\Common\Domain\AbstractRepository;
 use Doctrine\DBAL\Connection;
 use DusanKasan\Knapsack\Collection;
 
-class CategoriesRepository extends AbstractRepository
+class ProjectsRepository extends AbstractRepository
 {
-    protected $table = 'categories';
+    protected $table = 'projects';
 
     public function getAll()
     {

@@ -3,11 +3,11 @@
 /**
  * Responders
  */
-$app['responder.list-categories'] = function() use ($app) {
-    return new App\Category\Responder\ListCategoriesResponder();
+$app['responder.list-projects'] = function() use ($app) {
+    return new App\Project\Responder\ListProjectsResponder();
 };
-$app['responder.show-category'] = function() use ($app) {
-    return new App\Category\Responder\ShowCategoryResponder();
+$app['responder.show-project'] = function() use ($app) {
+    return new App\Project\Responder\ShowProjectResponder();
 };
 $app['responder.login'] = function() use ($app) {
     return new App\User\Responder\LoginResponder();
@@ -16,11 +16,11 @@ $app['responder.login'] = function() use ($app) {
 /**
  * Actions
  */
-$app['action.list-categories'] = function() use ($app) {
-    return new App\Category\Action\ListCategoriesAction($app['responder.list-categories'], $app['repository.categories']);
+$app['action.list-projects'] = function() use ($app) {
+    return new App\Project\Action\ListProjectsAction($app['responder.list-projects'], $app['repository.projects']);
 };
-$app['action.show-category'] = function() use ($app) {
-    return new App\Category\Action\ShowCategoryAction($app['responder.show-category'], $app['repository.categories']);
+$app['action.show-project'] = function() use ($app) {
+    return new App\Project\Action\ShowProjectAction($app['responder.show-project'], $app['repository.projects']);
 };
 $app['action.login'] = function() use ($app) {
     return new App\User\Action\LoginAction($app['responder.login'], $app['repository.users']);
@@ -34,15 +34,15 @@ $app->get('/', function () {
     $msg[] = '<h1>Application API</h1>';
     $msg[] = '<p>You\'re probably looking for JSON API:</p>';
     $msg[] = '<ul>';
-    $msg[] = '<li><a href="/api/v1/categories">List all categories</a></li>';
-    $msg[] = '<li><a href="/api/v1/categories/1">Show a specific category</a></li>';
+    $msg[] = '<li><a href="/api/v1/projects">List all projects</a></li>';
+    $msg[] = '<li><a href="/api/v1/projects/1">Show a specific category</a></li>';
     $msg[] = '</ul>';
 
     return implode('', $msg);
 });
 
 /** API */
-$app->get('/api/v1/categories', 'action.list-categories');
-$app->get('/api/v1/categories/{id}', 'action.show-category');
+$app->get('/api/v1/projects', 'action.list-projects');
+$app->get('/api/v1/projects/{id}', 'action.show-project');
 
 $app->post('/login', 'action.login');
